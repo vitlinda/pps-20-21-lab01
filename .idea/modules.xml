@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/pps1920-lab01-intellij-basic-example/pps1920-lab01-intellij-basic-example.iml" filepath="$PROJECT_DIR$/pps1920-lab01-intellij-basic-example/pps1920-lab01-intellij-basic-example.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pps1920-lab01-tdd/pps1920-lab01-tdd.iml" filepath="$PROJECT_DIR$/pps1920-lab01-tdd/pps1920-lab01-tdd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pps-lab01-intellij-basic-example/pps-lab01-intellij-basic-example.iml" filepath="$PROJECT_DIR$/pps-lab01-intellij-basic-example/pps-lab01-intellij-basic-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pps-lab01-tdd/pps-lab01-tdd.iml" filepath="$PROJECT_DIR$/pps-lab01-tdd/pps-lab01-tdd.iml" />
     </modules>
   </component>
 </project>

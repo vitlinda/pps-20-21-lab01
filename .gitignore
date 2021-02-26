@@ -21,3 +21,4 @@
 *.synctex*
 *.kate-swp
 *.cache
+.idea/workspace.xml
