@@ -13,7 +13,7 @@ public class SimpleBankAccount extends AbstractBankAccount {
     }
 
     @Override
-    public int addFee() {
+    public int subtractFee() {
         return FEE;
     }
 }

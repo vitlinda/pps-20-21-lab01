@@ -22,7 +22,7 @@ public abstract class AbstractBankAccount implements BankAccount{
 
     @Override
     public void deposit(final int usrID, final double amount) {
-        double totalAmount = amount - addFee();
+        double totalAmount = amount - subtractFee();
         if (checkUser(usrID)) {
             this.balance += totalAmount;
         }
@@ -30,13 +30,13 @@ public abstract class AbstractBankAccount implements BankAccount{
 
     @Override
     public void withdraw(final int usrID, final double amount) {
-        double totalAmount = amount - addFee();
+        double totalAmount = amount - subtractFee();
         if (checkUser(usrID) && isWithdrawAllowed(totalAmount)) {
             this.balance -= totalAmount;
         }
     }
 
-    public abstract int addFee();
+    public abstract int subtractFee();
 
     private boolean isWithdrawAllowed(final double amount){
         return this.balance >= amount;

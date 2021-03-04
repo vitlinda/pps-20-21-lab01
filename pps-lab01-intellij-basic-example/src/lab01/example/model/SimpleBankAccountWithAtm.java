@@ -8,7 +8,7 @@ public class SimpleBankAccountWithAtm extends AbstractBankAccount {
     }
 
     @Override
-    public int addFee() {
+    public int subtractFee() {
         return FEE;
     }
 }
