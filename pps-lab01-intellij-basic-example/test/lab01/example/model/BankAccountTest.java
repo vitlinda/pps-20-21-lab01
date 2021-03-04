@@ -14,10 +14,6 @@ public class BankAccountTest {
         this.bankAccount = account;
     }
 
-    @BeforeEach
-    void beforeEach(){
-    }
-
     @Test
     void testInitialBalance(final double expectedValue) {
         assertEquals(expectedValue, bankAccount.getBalance());
