@@ -15,5 +15,10 @@ public class CircularListTest {
         assertEquals(0, circularList.size());
     }
 
+    @Test
+    public void listSizeAfterAdd(){
+        circularList.add(1);
+        assertEquals(1, circularList.size());
+    }
 
 }

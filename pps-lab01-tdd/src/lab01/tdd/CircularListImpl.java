@@ -1,17 +1,20 @@
 package lab01.tdd;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 public class CircularListImpl implements CircularList {
+    private List<Integer> circularList = new LinkedList();
 
     @Override
     public void add(int element) {
+        circularList.add(element);
     }
 
     @Override
     public int size() {
-        return 0;
+        return circularList.size();
     }
 
     @Override
