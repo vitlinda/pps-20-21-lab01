@@ -85,9 +85,22 @@ public class CircularListTest {
         for (int i = 0; i < OCCURENCIES_NUMBER; i++) {
             circularList.add(i);
         }
-        for (int i = OCCURENCIES_NUMBER-1; i > 0; i--) {
+        for (int i = OCCURENCIES_NUMBER-1; i >= 0; i--) {
             assertEquals(Optional.of(i), circularList.previous());
         }
+    }
+
+    @Test
+    public void previousElementAfterFirstElementIsTheLastElementOfTheList() {
+        previousElementAfterMultipleAdds();
+        assertEquals(Optional.of(2), circularList.previous());
+    }
+
+    @Test
+    public void firstElementAfterReset() {
+        nextElementAfterMultipleAdds();
+        circularList.reset();
+        assertEquals(Optional.of(0), circularList.next());
     }
 
 }

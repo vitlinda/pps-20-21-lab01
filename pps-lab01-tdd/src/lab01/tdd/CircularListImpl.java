@@ -33,7 +33,7 @@ public class CircularListImpl implements CircularList {
         } else {
             int element = circularList.get(position++);
             if(position == circularList.size()){
-                position = INITIAL_POSITION;
+                this.reset();
             }
             return Optional.of(element);
         }
@@ -45,7 +45,7 @@ public class CircularListImpl implements CircularList {
             return Optional.empty();
         } else {
             if(position == this.size()){
-                position = INITIAL_POSITION;
+                this.reset();
             }
             int element = circularList.get(this.size() - ++position);
             return Optional.of(element);
@@ -54,7 +54,7 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public void reset() {
-
+        position = INITIAL_POSITION;
     }
 
     @Override
