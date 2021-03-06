@@ -23,9 +23,20 @@ public class NextWithStrategyTest {
         circularList.add(2);
         circularList.add(3);
         circularList.add(4);
-
         assertEquals(Optional.of(2), circularList.next(strategy));
         assertEquals(Optional.of(4), circularList.next(strategy));
+
+    }
+
+    @Test
+    void nextEvenElementWithMultipleOfStrategy() {
+        strategy = new MultipleOfStrategy(5);
+        circularList.add(0);
+        circularList.add(2);
+        circularList.add(3);
+        circularList.add(5);
+        assertEquals(Optional.of(0), circularList.next(strategy));
+        assertEquals(Optional.of(5), circularList.next(strategy));
 
     }
 
