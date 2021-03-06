@@ -44,7 +44,10 @@ public class CircularListImpl implements CircularList {
         if (this.isEmpty()) {
             return Optional.empty();
         } else {
-            int element = circularList.get(position);
+            if(position == this.size()){
+                position = INITIAL_POSITION;
+            }
+            int element = circularList.get(this.size() - ++position);
             return Optional.of(element);
         }
     }
