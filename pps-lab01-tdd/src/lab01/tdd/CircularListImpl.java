@@ -7,15 +7,16 @@ import java.util.Optional;
 public class CircularListImpl implements CircularList {
     private static final int INITIAL_POSITION = 0;
 
-
     private List<Integer> circularList = new LinkedList();
     private int position = INITIAL_POSITION;
-    private boolean next = false;
-    private boolean previous = false;
+    private int nextElement;
+    private int previousElement;
 
     @Override
     public void add(int element) {
         circularList.add(element);
+        nextElement = circularList.get(0);
+        previousElement = circularList.get(size()-1);
     }
 
     @Override
@@ -33,15 +34,16 @@ public class CircularListImpl implements CircularList {
         if (isEmpty()) {
             return Optional.empty();
         } else {
-            if(previous){
-                position--;
-                previous = false;
-            }
-            next = true;
-            int element = circularList.get(position++);
-            if(position == circularList.size()){
+            int element = nextElement;
+            position = circularList.indexOf(element);
+            setPreviousElement(position);
+            if (position + 1 == circularList.size()) {
                 reset();
+                nextElement = circularList.get(position);
+            } else {
+                nextElement = circularList.get(position + 1);
             }
+
             return Optional.of(element);
         }
     }
@@ -51,15 +53,14 @@ public class CircularListImpl implements CircularList {
         if (isEmpty()) {
             return Optional.empty();
         } else {
-            if(position == size()){
-                this.reset();
+            int element = previousElement;
+            position = circularList.indexOf(previousElement);
+            if (position == 0) {
+                previousElement = circularList.get(size() - 1);
+            } else {
+                previousElement = circularList.get(position - 1);
             }
-            if(next){
-                position--;
-                next = false;
-            }
-            previous = true;
-            int element = circularList.get(size() - ++position);
+            setNextElement(position);
             return Optional.of(element);
         }
     }
@@ -73,4 +74,21 @@ public class CircularListImpl implements CircularList {
     public Optional<Integer> next(SelectStrategy strategy) {
         return Optional.empty();
     }
+
+    private void setNextElement (int currentPosition) {
+        if(currentPosition == size() - 1){
+            nextElement = INITIAL_POSITION;
+        } else {
+            nextElement += currentPosition + 1;
+        }
+    }
+
+    private void setPreviousElement(int currentPosition) {
+        if(currentPosition - 1 < 0){
+            previousElement= size() - 1;
+        } else {
+            previousElement = currentPosition - 1;
+        }
+    }
+
 }

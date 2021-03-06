@@ -97,15 +97,32 @@ public class CircularListTest {
         nextElementAfterMultipleAdds();
         circularList.reset();
         assertEquals(Optional.of(0), circularList.next());
+
+        previousElementAfterMultipleAdds();
+        circularList.reset();
+        assertEquals(Optional.of(2), circularList.previous());
+    }
+
+    @Test
+    public void nextPreviousAlternatedSequences() {
+        addMultipleElements();
+        assertEquals(Optional.of(0), circularList.next());
+        assertEquals(Optional.of(2), circularList.previous());
+        assertEquals(Optional.of(0), circularList.next());
+        assertEquals(Optional.of(2), circularList.previous());
     }
 
     @Test
     public void nextPreviousMixedSequences() {
         addMultipleElements();
         assertEquals(Optional.of(0), circularList.next());
+        assertEquals(Optional.of(1), circularList.next());
+        assertEquals(Optional.of(0), circularList.previous());
         assertEquals(Optional.of(2), circularList.previous());
         assertEquals(Optional.of(0), circularList.next());
-        assertEquals(Optional.of(2), circularList.previous());
+        assertEquals(Optional.of(1), circularList.next());
+        assertEquals(Optional.of(2), circularList.next());
+        assertEquals(Optional.of(1), circularList.previous());
     }
 
     private void addMultipleElements() {
