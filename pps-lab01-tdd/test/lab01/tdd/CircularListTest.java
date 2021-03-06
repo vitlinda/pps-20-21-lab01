@@ -69,5 +69,10 @@ public class CircularListTest {
         assertEquals(Optional.of(0), circularList.next());
     }
 
+    @Test
+    public void previousElementWithEmptyList() {
+        assertEquals(Optional.empty(), circularList.next());
+    }
+
 
 }
