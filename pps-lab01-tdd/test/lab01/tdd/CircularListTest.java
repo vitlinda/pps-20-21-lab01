@@ -55,9 +55,7 @@ public class CircularListTest {
 
     @Test
     public void nextElementAfterMultipleAdds() {
-        for (int i = 0; i < OCCURENCIES_NUMBER; i++) {
-            circularList.add(i);
-        }
+        addMultipleElements();
         for (int i = 0; i < OCCURENCIES_NUMBER; i++) {
             assertEquals(Optional.of(i), circularList.next());
         }
@@ -82,9 +80,7 @@ public class CircularListTest {
 
     @Test
     public void previousElementAfterMultipleAdds() {
-        for (int i = 0; i < OCCURENCIES_NUMBER; i++) {
-            circularList.add(i);
-        }
+        addMultipleElements();
         for (int i = OCCURENCIES_NUMBER-1; i >= 0; i--) {
             assertEquals(Optional.of(i), circularList.previous());
         }
@@ -101,6 +97,21 @@ public class CircularListTest {
         nextElementAfterMultipleAdds();
         circularList.reset();
         assertEquals(Optional.of(0), circularList.next());
+    }
+
+    @Test
+    public void nextPreviousMixedSequences() {
+        addMultipleElements();
+        assertEquals(Optional.of(0), circularList.next());
+        assertEquals(Optional.of(2), circularList.previous());
+        assertEquals(Optional.of(0), circularList.next());
+        assertEquals(Optional.of(2), circularList.previous());
+    }
+
+    private void addMultipleElements() {
+        for (int i = 0; i < OCCURENCIES_NUMBER; i++) {
+            circularList.add(i);
+        }
     }
 
 }

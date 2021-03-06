@@ -10,6 +10,8 @@ public class CircularListImpl implements CircularList {
 
     private List<Integer> circularList = new LinkedList();
     private int position = INITIAL_POSITION;
+    private boolean next = false;
+    private boolean previous = false;
 
     @Override
     public void add(int element) {
@@ -28,12 +30,17 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> next() {
-        if (this.isEmpty()) {
+        if (isEmpty()) {
             return Optional.empty();
         } else {
+            if(previous){
+                position--;
+                previous = false;
+            }
+            next = true;
             int element = circularList.get(position++);
             if(position == circularList.size()){
-                this.reset();
+                reset();
             }
             return Optional.of(element);
         }
@@ -41,13 +48,18 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> previous() {
-        if (this.isEmpty()) {
+        if (isEmpty()) {
             return Optional.empty();
         } else {
-            if(position == this.size()){
+            if(position == size()){
                 this.reset();
             }
-            int element = circularList.get(this.size() - ++position);
+            if(next){
+                position--;
+                next = false;
+            }
+            previous = true;
+            int element = circularList.get(size() - ++position);
             return Optional.of(element);
         }
     }
