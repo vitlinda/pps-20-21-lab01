@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Optional;
 
 public class CircularListImpl implements CircularList {
+    private static final int INITIAL_POSITION = 0;
+
+
     private List<Integer> circularList = new LinkedList();
-    private int position = 0;
+    private int position = INITIAL_POSITION;
 
     @Override
     public void add(int element) {
@@ -25,10 +28,14 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> next() {
-        if(this.isEmpty()){
+        if (this.isEmpty()) {
             return Optional.empty();
         } else {
-            return Optional.of(circularList.get(position++));
+            int element = circularList.get(position++);
+            if(position == circularList.size()){
+                position = INITIAL_POSITION;
+            }
+            return Optional.of(element);
         }
 
     }

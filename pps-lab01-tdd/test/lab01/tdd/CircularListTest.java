@@ -11,32 +11,33 @@ import static org.junit.jupiter.api.Assertions.*;
  * The test suite for testing the CircularList implementation
  */
 public class CircularListTest {
-    private CircularListImpl circularList;
     private static final int OCCURENCIES_NUMBER = 3;
 
+    private CircularListImpl circularList;
+
     @BeforeEach
-    void beforeEach(){
+    void beforeEach() {
         this.circularList = new CircularListImpl();
     }
 
     @Test
-    public void initialListSize(){
+    public void initialListSize() {
         assertEquals(0, circularList.size());
     }
 
     @Test
-    public void listSizeAfterAdd(){
+    public void listSizeAfterAdd() {
         circularList.add(1);
         assertEquals(1, circularList.size());
     }
 
     @Test
-    public void listIsEmptyBeforeAnyAdd(){
+    public void listIsEmptyBeforeAnyAdd() {
         assertTrue(circularList.isEmpty());
     }
 
     @Test
-    public void listIsEmptyAfterAdd(){
+    public void listIsEmptyAfterAdd() {
         circularList.add(1);
         assertFalse(circularList.isEmpty());
     }
@@ -54,17 +55,18 @@ public class CircularListTest {
 
     @Test
     public void nextElementAfterMultipleAdds() {
-        for(int i = 0; i < OCCURENCIES_NUMBER; i++){
+        for (int i = 0; i < OCCURENCIES_NUMBER; i++) {
             circularList.add(i);
         }
-        for(int i = 0; i < OCCURENCIES_NUMBER; i++){
+        for (int i = 0; i < OCCURENCIES_NUMBER; i++) {
             assertEquals(Optional.of(i), circularList.next());
         }
     }
 
     @Test
-    public void previousElementWithEmptyList() {
-        assertEquals(Optional.empty(), circularList.next());
+    public void nextElementAfterLastElementIsTheFirstElementOfTheList() {
+        nextElementAfterMultipleAdds();
+        assertEquals(Optional.of(0), circularList.next());
     }
 
 
