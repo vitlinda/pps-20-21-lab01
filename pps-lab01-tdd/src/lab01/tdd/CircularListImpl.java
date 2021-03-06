@@ -1,11 +1,10 @@
 package lab01.tdd;
 
-import javax.swing.text.html.Option;
+import lab01.tdd.strategy.SelectStrategy;
+
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class CircularListImpl implements CircularList {
     private static final int INITIAL_POSITION = 0;

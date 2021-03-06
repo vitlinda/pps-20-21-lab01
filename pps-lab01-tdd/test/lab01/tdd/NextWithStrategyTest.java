@@ -1,5 +1,6 @@
 package lab01.tdd;
 
+import lab01.tdd.strategy.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,17 +10,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NextWithStrategyTest {
     private CircularListImpl circularList;
-    private SelectStrategy strategy;
+    private StrategyAbstractFactory factory;
 
     @BeforeEach
     void beforeEach() {
+        factory = new StrategyFactory();
         circularList = new CircularListImpl();
         addMultipleElements();
     }
 
     @Test
     void nextEvenElementWithEvenStrategy() {
-        strategy = new EvenStrategy();
+        SelectStrategy strategy = factory.createEvenStrategy();
         assertEquals(Optional.of(0), circularList.next(strategy));
         assertEquals(Optional.of(2), circularList.next(strategy));
 
@@ -27,16 +29,15 @@ public class NextWithStrategyTest {
 
     @Test
     void nextEvenElementWithMultipleOfStrategy() {
-        strategy = new MultipleOfStrategy(5);
+        SelectStrategy strategy = factory.createMultipleOfStrategy(5);
         assertEquals(Optional.of(0), circularList.next(strategy));
         assertEquals(Optional.of(5), circularList.next(strategy));
     }
 
     @Test
     void nextEvenElementWithEqualsStrategy() {
-        strategy = new MultipleOfStrategy(5);
-        assertEquals(Optional.of(0), circularList.next(strategy));
-        assertEquals(Optional.of(5), circularList.next(strategy));
+        SelectStrategy strategy = factory.createEqualsStrategy(3);
+        assertEquals(Optional.of(3), circularList.next(strategy));
     }
 
     private void addMultipleElements() {
