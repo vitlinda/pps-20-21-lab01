@@ -1,8 +1,11 @@
 package lab01.tdd;
 
+import javax.swing.text.html.Option;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class CircularListImpl implements CircularList {
     private static final int INITIAL_POSITION = 0;
@@ -16,7 +19,7 @@ public class CircularListImpl implements CircularList {
     public void add(int element) {
         circularList.add(element);
         nextElement = circularList.get(0);
-        previousElement = circularList.get(size()-1);
+        previousElement = circularList.get(size() - 1);
     }
 
     @Override
@@ -43,7 +46,6 @@ public class CircularListImpl implements CircularList {
             } else {
                 nextElement = circularList.get(position + 1);
             }
-
             return Optional.of(element);
         }
     }
@@ -72,11 +74,25 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> next(SelectStrategy strategy) {
-        return Optional.empty();
+        if (!circularList.isEmpty()) {
+            int index = 0;
+            int element = this.next().get();
+            while (!strategy.apply(element)) {
+                if (index == size()) {
+                    return Optional.empty();
+                }
+                element = this.next().get();
+                index++;
+            }
+            return Optional.of(element);
+        } else {
+            return Optional.empty();
+        }
+
     }
 
-    private void setNextElement (int currentPosition) {
-        if(currentPosition == size() - 1){
+    private void setNextElement(int currentPosition) {
+        if (currentPosition == size() - 1) {
             nextElement = INITIAL_POSITION;
         } else {
             nextElement += currentPosition + 1;
@@ -84,8 +100,8 @@ public class CircularListImpl implements CircularList {
     }
 
     private void setPreviousElement(int currentPosition) {
-        if(currentPosition - 1 < 0){
-            previousElement= size() - 1;
+        if (currentPosition - 1 < 0) {
+            previousElement = size() - 1;
         } else {
             previousElement = currentPosition - 1;
         }

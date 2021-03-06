@@ -17,7 +17,7 @@ public class CircularListTest {
 
     @BeforeEach
     void beforeEach() {
-        this.circularList = new CircularListImpl();
+        circularList = new CircularListImpl();
     }
 
     @Test
