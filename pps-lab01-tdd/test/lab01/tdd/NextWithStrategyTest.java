@@ -14,30 +14,36 @@ public class NextWithStrategyTest {
     @BeforeEach
     void beforeEach() {
         circularList = new CircularListImpl();
+        addMultipleElements();
     }
 
     @Test
     void nextEvenElementWithEvenStrategy() {
         strategy = new EvenStrategy();
-        circularList.add(1);
-        circularList.add(2);
-        circularList.add(3);
-        circularList.add(4);
+        assertEquals(Optional.of(0), circularList.next(strategy));
         assertEquals(Optional.of(2), circularList.next(strategy));
-        assertEquals(Optional.of(4), circularList.next(strategy));
 
     }
 
     @Test
     void nextEvenElementWithMultipleOfStrategy() {
         strategy = new MultipleOfStrategy(5);
+        assertEquals(Optional.of(0), circularList.next(strategy));
+        assertEquals(Optional.of(5), circularList.next(strategy));
+    }
+
+    @Test
+    void nextEvenElementWithEqualsStrategy() {
+        strategy = new MultipleOfStrategy(5);
+        assertEquals(Optional.of(0), circularList.next(strategy));
+        assertEquals(Optional.of(5), circularList.next(strategy));
+    }
+
+    private void addMultipleElements() {
         circularList.add(0);
         circularList.add(2);
         circularList.add(3);
         circularList.add(5);
-        assertEquals(Optional.of(0), circularList.next(strategy));
-        assertEquals(Optional.of(5), circularList.next(strategy));
-
     }
 
 }
