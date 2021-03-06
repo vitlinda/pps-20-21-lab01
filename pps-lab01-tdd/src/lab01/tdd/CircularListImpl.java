@@ -6,6 +6,7 @@ import java.util.Optional;
 
 public class CircularListImpl implements CircularList {
     private List<Integer> circularList = new LinkedList();
+    private int position = 0;
 
     @Override
     public void add(int element) {
@@ -27,7 +28,7 @@ public class CircularListImpl implements CircularList {
         if(this.isEmpty()){
             return Optional.empty();
         } else {
-            return Optional.of(circularList.get(0));
+            return Optional.of(circularList.get(position++));
         }
 
     }

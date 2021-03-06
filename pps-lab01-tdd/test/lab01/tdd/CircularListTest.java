@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class CircularListTest {
     private CircularListImpl circularList;
+    private static final int OCCURENCIES_NUMBER = 3;
 
     @BeforeEach
     void beforeEach(){
@@ -49,6 +50,16 @@ public class CircularListTest {
     public void nextElementAfterOneAdd() {
         circularList.add(1);
         assertEquals(Optional.of(1), circularList.next());
+    }
+
+    @Test
+    public void nextElementAfterMultipleAdds() {
+        for(int i = 0; i < OCCURENCIES_NUMBER; i++){
+            circularList.add(i);
+        }
+        for(int i = 0; i < OCCURENCIES_NUMBER; i++){
+            assertEquals(Optional.of(i), circularList.next());
+        }
     }
 
 
