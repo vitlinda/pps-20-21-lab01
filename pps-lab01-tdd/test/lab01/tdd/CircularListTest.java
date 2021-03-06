@@ -41,8 +41,14 @@ public class CircularListTest {
     }
 
     @Test
-    public void listNextWithNoElement() {
+    public void nextElementWithEmptyList() {
         assertEquals(Optional.empty(), circularList.next());
+    }
+
+    @Test
+    public void nextElementAfterOneAdd() {
+        circularList.add(1);
+        assertEquals(Optional.of(1), circularList.next());
     }
 
 
