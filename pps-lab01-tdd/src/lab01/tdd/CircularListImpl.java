@@ -37,12 +37,16 @@ public class CircularListImpl implements CircularList {
             }
             return Optional.of(element);
         }
-
     }
 
     @Override
     public Optional<Integer> previous() {
-        return Optional.empty();
+        if (this.isEmpty()) {
+            return Optional.empty();
+        } else {
+            int element = circularList.get(position);
+            return Optional.of(element);
+        }
     }
 
     @Override
