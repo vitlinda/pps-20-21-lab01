@@ -9,7 +9,7 @@ import java.util.Optional;
 public class CircularListImpl implements CircularList {
     private static final int INITIAL_POSITION = 0;
 
-    private List<Integer> circularList = new LinkedList();
+    private final LinkedList<Integer> circularList = new LinkedList<>();
     private int position = INITIAL_POSITION;
     private int nextElement;
     private int previousElement;

@@ -24,7 +24,6 @@ public class NextWithStrategyTest {
         SelectStrategy strategy = factory.createEvenStrategy();
         assertEquals(Optional.of(0), circularList.next(strategy));
         assertEquals(Optional.of(2), circularList.next(strategy));
-
     }
 
     @Test
